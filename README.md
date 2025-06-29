@@ -2,6 +2,10 @@
 
 ClaudeCodeベースで動く、カクヨムの情報を探索できるSlackボット。MCPサーバーを使ってカクヨムと連携し、作品情報やランキングなどを取得する。
 
+## 動作例
+
+<img width="549" src="https://github.com/user-attachments/assets/b1ffd9d5-08f4-477f-b65d-c430377b94ec" />
+
 ## 構成
 
 - [**claude-code-slack-agent**](https://github.com/106-/claude-code-slack-agent/): Claude Codeを使ったSlackボット
