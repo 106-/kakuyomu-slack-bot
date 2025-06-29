@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  kakuyomu-mcp:
+    image: ubiq/kakuyomu-mcp:latest
+    platform: linux/amd64
+    restart: unless-stopped
+    container_name: kakuyomu-mcp
+    networks:
+      - slack-bot-network
+    ports:
+      - "9468:9468"
+    environment:
+      - PORT=9468
+      - HOST=0.0.0.0
+    command: ["python", "-m", "kakuyomu_mcp.main", "--transport", "streamable-http"]
+
+  slack-bot:
+    image: ubiq/claude-code-slack-agent:latest
+    platform: linux/amd64
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+    restart: unless-stopped
+    container_name: claude-slack-bot
+    networks:
+      - slack-bot-network
+    depends_on:
+      - kakuyomu-mcp
+
+networks:
+  slack-bot-network:
+    driver: bridge

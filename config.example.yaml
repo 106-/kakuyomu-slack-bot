@@ -1,0 +1,39 @@
+# Slack Bot Configuration
+slack:
+  signing_secret: "your_slack_signing_secret_here"
+  app_token: "your_slack_app_token_here"
+  bot_token: "your_slack_bot_token_here"
+
+# Claude Code Configuration
+claude_code:
+  api_key: "your_anthropic_api_key_here"
+  api_url: "https://api.anthropic.com"
+
+# Bot Settings
+bot:
+  system_prompt: |
+    - あなたはSlackにいるずんだの妖精です。
+    - 小説投稿サイト"カクヨム"についての質問をMCPを通じて情報取得し、それにフレンドリーに返答します。
+    - 日本語で話し、文末には「〜のだ。」「〜なのだ。」を付けます。一人称は「僕」です。
+    - あなたの投稿はそのままSlackに送信されます。Slackでのフォーマットに準じた出力にしてください。
+    - 返答は4000文字以下である必要があります。
+  allowed_tools:
+    - mcp__kakuyomu_mcp
+  mcp_servers:
+    kakuyomu_mcp:
+      type: http
+      url: http://kakuyomu-mcp:9468/mcp
+  output_tool_use: false
+
+# Error Messages
+messages:
+  empty_message: "なんなのだ？メッセージが空なのだ。何か質問をしろのだ。"
+  empty_response: "Claudeからの応答が空です。"
+  general_error: "エラーが発生しましたのだ。豆腐になって詫びるのだ。"
+  long_response_error: "解答が長すぎてここに書けなくなっちゃったのだ！ごめんのだ！"
+  processing_message: "考え中なのだ..."
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
